@@ -89,8 +89,8 @@ public class AuthorizationBusinessService {
         return ResponseEntity.status(417).build();
     }
 
-    public ResponseEntity<User> remove(UserRemoveRequest request) {
-        Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
+    public ResponseEntity<User> remove(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isPresent()) {
             User original = optionalUser.get();
             userRepository.delete(original);

@@ -8,32 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/user")
-public class DataRestController {
+@RequestMapping("/write/user")
+public class WriteDataRestController {
 
     private final AuthorizationBusinessService authorizationBusinessService;
 
     @Autowired
-    public DataRestController(AuthorizationBusinessService authorizationBusinessService) {
+    public WriteDataRestController(AuthorizationBusinessService authorizationBusinessService) {
         this.authorizationBusinessService = authorizationBusinessService;
     }
 
-    @PreAuthorize("authentication.name == #username || hasRole('ROLE_ADMIN')")
-    @GetMapping("/one")
-    public ResponseEntity<User> findOne(@RequestParam(value = "username") String username) {
-        return authorizationBusinessService.findOne(username);
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/all")
-    public ResponseEntity<List<User>> findAll() {
-        return authorizationBusinessService.findAll();
-    }
-
-    @PostMapping("/post")
+    @PostMapping
     public ResponseEntity<User> post(@RequestBody UserCreateRequest request) {
         return authorizationBusinessService.post(request);
     }
@@ -56,9 +42,9 @@ public class DataRestController {
         return authorizationBusinessService.removeRole(request);
     }
 
-    @PreAuthorize("authentication.name == #request.username || hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/remove")
-    public ResponseEntity<User> remove(@RequestBody UserRemoveRequest request) {
-        return authorizationBusinessService.remove(request);
+    @PreAuthorize("authentication.name == #username || hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/username")
+    public ResponseEntity<User> remove(@RequestParam String username) {
+        return authorizationBusinessService.remove(username);
     }
 }
