@@ -31,18 +31,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         this.tokenStore = tokenStore;
     }
 
-    /**
-     * Method configures {@link HttpSecurity} to secure resources
-     *
-     * For explanation between configuration {@link HttpSecurity} in {@link WebSecurityConfigurerAdapter}
-     * and {@link ResourceServerConfigurerAdapter} follow:
-     * https://stackoverflow.com/questions/44234159/using-websecurityconfigureradapter-with-spring-oauth2-and-user-info-uri
-     * https://stackoverflow.com/questions/38034217/spring-boot-and-oauth2-websecurityconfigureradapter-vs-resourceserverconfigurer
-     * https://stackoverflow.com/questions/37288715/spring-oauth2-httpsecurity-http-resourceserverconfigurer-and-websecurityconf?rq=1
-     * https://stackoverflow.com/questions/45980267/resourceserverconfigureradapter-vs-websecurityconfigureradapter
-     * https://github.com/spring-projects/spring-security-oauth/issues/1024
-     *
-     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
@@ -62,6 +50,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .tokenServices(tokenServices)
                 .tokenStore(tokenStore);
     }
-
-
 }
