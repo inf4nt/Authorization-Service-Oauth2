@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
 @SpringBootApplication
-@ComponentScan("com.authorization.service.server.*")
 public class AuthorizationServiceApplication {
 
     public static void main(String[] args) {
@@ -26,10 +25,5 @@ public class AuthorizationServiceApplication {
     @Bean
     public OAuth2RestTemplate clientCredentialsRestTemplate() {
         return new OAuth2RestTemplate(clientCredentialsResourceDetails());
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

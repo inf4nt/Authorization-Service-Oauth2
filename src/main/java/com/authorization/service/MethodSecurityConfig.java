@@ -1,4 +1,4 @@
-package com.authorization.service.server.security.config;
+package com.authorization.service;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;

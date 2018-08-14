@@ -1,4 +1,4 @@
-package com.authorization.service.server.security.config;
+package com.authorization.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,92 +56,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 //                .autoApprove(true)
 //                .authorities("ACTUATOR")
                 .accessTokenValiditySeconds(accessTokenValiditySeconds) //Access token is only valid for ? minutes.
-                .refreshTokenValiditySeconds(refreshTokenValiditySeconds) //Refresh token is only valid for ? minutes.
+                .refreshTokenValiditySeconds(refreshTokenValiditySeconds); //Refresh token is only valid for ? minutes.
 //				.resourceIds(authServerResourceId/*, "oauth2-resource"*/) //определяет к каким ресурсам может обращаться
-
-                .and()
-                .withClient("auth_server")
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("auth_server")
-                .accessTokenValiditySeconds(accessTokenValiditySeconds)
-                .refreshTokenValiditySeconds(refreshTokenValiditySeconds)
-
-
-                .and()
-                .withClient("adminka")
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("server", "ui")
-                .accessTokenValiditySeconds(accessTokenValiditySeconds)
-                .refreshTokenValiditySeconds(refreshTokenValiditySeconds)
-
-                .and()
-                .withClient("auth")
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token", "password")
-                .scopes("server")
-                .authorities("ROLE_ADMIN")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(600)
-
-                .and()
-                .withClient("customer-service")
-//					.secret(env.getProperty("DEMO_SERVICE_PASSWORD"))
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token", "password")
-                .scopes("server")
-//                .resourceIds(authServerResourceId, "oauth2-resource")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(6000)
-
-                .and()
-                .withClient("listing-service")
-//					.secret(env.getProperty("DEMO_SERVICE_PASSWORD"))
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("server")
-//                .resourceIds(authServerResourceId, "oauth2-resource")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(6000)
-
-                .and()
-                .withClient("catalog-service")
-//					.secret(env.getProperty("DEMO_SERVICE_PASSWORD"))
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("server")
-//                .resourceIds(authServerResourceId, "oauth2-resource")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(6000)
-
-
-                //dev services ====================
-                .and()
-                .withClient("mail-service")
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("server")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(6000)
-
-                .and()
-                .withClient("ask-service")
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token", "authorization_code")
-                .scopes("server", "ui")
-                .authorities("ROLE_ADMIN")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(600)
-
-                .and()
-                .withClient("demo-service")
-                .secret("secret")
-                .authorizedGrantTypes("client_credentials", "refresh_token", "authorization_code")
-                .scopes("server")
-                .accessTokenValiditySeconds(300)
-                .refreshTokenValiditySeconds(600);
-                //========================================
-
-
     }
 
     @Override
