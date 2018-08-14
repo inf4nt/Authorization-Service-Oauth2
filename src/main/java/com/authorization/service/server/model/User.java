@@ -1,12 +1,13 @@
 package com.authorization.service.server.model;
 
-import com.authorization.service.server.common.Roles;
+import com.authorization.service.server.common.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Document(collection = "oauth2_user")
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Oauth2User {
+public class User {
 
     @Id
     String id;
@@ -25,5 +26,9 @@ public class Oauth2User {
 
     String password;
 
-    List<Roles> roles;
+    List<Role> roles;
+
+    boolean isActive;
+
+    LocalDate post;
 }

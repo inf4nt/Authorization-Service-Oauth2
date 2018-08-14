@@ -1,51 +1,56 @@
 package com.authorization.service.server.fake;
 
-import com.authorization.service.server.common.Roles;
-import com.authorization.service.server.model.Oauth2User;
-import com.authorization.service.server.repository.Oauth2UserRepository;
+import com.authorization.service.server.common.Role;
+import com.authorization.service.server.model.User;
+import com.authorization.service.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Service
 public class FakeData {
 
-    private final Oauth2UserRepository oauth2UserRepository;
+    private final UserRepository userRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public FakeData(Oauth2UserRepository oauth2UserRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.oauth2UserRepository = oauth2UserRepository;
+    public FakeData(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @PostConstruct
     public void fakeData() {
-        oauth2UserRepository.deleteAll();
+        userRepository.deleteAll();
 
         for (int i = 0; i < 10; i++) {
-            Oauth2User user = new Oauth2User();
+            User user = new User();
             user.setUsername("user" + i);
             user.setPassword(bCryptPasswordEncoder.encode("user" + i));
-            user.setRoles(new ArrayList<Roles>() {{
-                add(Roles.USER);
+            user.setRoles(new ArrayList<Role>() {{
+                add(Role.USER);
             }});
-            oauth2UserRepository.save(user);
+            user.setPost(LocalDate.now());
+            user.setActive(true);
+            userRepository.save(user);
         }
 
         for (int i = 0; i < 10; i++) {
-            Oauth2User user = new Oauth2User();
+            User user = new User();
             user.setUsername("admin" + i);
             user.setPassword(bCryptPasswordEncoder.encode("admin" + i));
-            user.setRoles(new ArrayList<Roles>() {{
-                add(Roles.USER);
-                add(Roles.ADMIN);
+            user.setRoles(new ArrayList<Role>() {{
+                add(Role.USER);
+                add(Role.ADMIN);
             }});
-            oauth2UserRepository.save(user);
+            user.setPost(LocalDate.now());
+            user.setActive(true);
+            userRepository.save(user);
         }
     }
 }
