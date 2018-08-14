@@ -1,3 +1,7 @@
+
+![Alt text](https://raw.githubusercontent.com/infantMG/Authorization-Service-Oauth2/master/src/main/resources/New312312%20Bitmap%20Image.jpg?raw=true "Title")
+
+
 grant type "password credentials"
 username "?????"
 password "?????"
