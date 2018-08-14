@@ -1,0 +1,18 @@
+server:
+  port: 5000
+  context-path: /uaa
+  use-forward-headers: false
+authorization-server:
+  certificate:
+    key: mySecretKey
+  accessTokenValiditySeconds: 25000
+  refreshTokenValiditySeconds: 300000
+security:
+  basic:
+    enabled: false
+spring:
+  application:
+    name: authorization-server
+  data:
+    mongodb:
+      uri: mongodb://mongodb:mongodb123456@ds217002.mlab.com:17002/evolution-user-reactive
