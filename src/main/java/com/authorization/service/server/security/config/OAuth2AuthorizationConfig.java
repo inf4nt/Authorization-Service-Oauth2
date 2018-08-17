@@ -26,7 +26,7 @@ import java.security.KeyPair;
 
 @Configuration
 @EnableAuthorizationServer
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Value("${authorization-server.certificate.key}")

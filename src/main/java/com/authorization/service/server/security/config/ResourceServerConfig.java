@@ -18,7 +18,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableResourceServer
 @EnableOAuth2Client
-@Order(99)
+//@Order(99)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private final DefaultTokenServices tokenServices;
