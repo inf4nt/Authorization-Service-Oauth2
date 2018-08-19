@@ -13,8 +13,12 @@ import java.util.ArrayList;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    public UserDetailsServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
