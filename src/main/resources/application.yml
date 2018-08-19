@@ -1,8 +1,8 @@
+spring:
+  application:
+    name: authorization-server
 server:
   port: 5000
   use-forward-headers: false
   servlet:
     context-path: /uaa
-spring:
-  application:
-    name: authorization-server

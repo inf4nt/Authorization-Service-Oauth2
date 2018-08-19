@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
 @SpringBootApplication
+@ComponentScan("com.authorization.service.server.*")
 public class AuthorizationServiceApplication {
 
     public static void main(String[] args) {
